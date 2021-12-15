@@ -1,6 +1,6 @@
 package com.ibm.academia.apirest.datos;
 
-import com.ibm.academia.apirest.entities.Cliente;
+import com.ibm.academia.apirest.models.entities.Cliente;
 
 public class DatosDummy 
 {
