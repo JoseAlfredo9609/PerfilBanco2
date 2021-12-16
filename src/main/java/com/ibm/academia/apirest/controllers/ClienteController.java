@@ -32,6 +32,7 @@ public class ClienteController
 	 * @param edad Parametro para indicar la edad del tipo Cliente
 	 * NotFoundException En caso de que falle buscando el tipo de tarjeta
 	 * @return Tipo de tarjeta para el perfil del cliente.
+	 * @author JAMR
 	 */
 	@GetMapping("/perfil")
     public ResponseEntity<?> indicarPerfil(@RequestParam String pasion , @RequestParam Integer salario , @RequestParam Integer edad)
@@ -50,6 +51,7 @@ public class ClienteController
 	 * @param edad Parametro para indicar la edad del tipo Cliente
 	 * NotFoundException En caso de que falle buscando el tipo de tarjeta
 	 * @return Tipo de tarjeta para el perfil del cliente.
+	 * @author JAMR
 	 */
 	@GetMapping("/perfil/dto")
     public ResponseEntity<?> indicarPerfilDTO(@RequestParam String pasion , @RequestParam Integer salario , @RequestParam Integer edad)
