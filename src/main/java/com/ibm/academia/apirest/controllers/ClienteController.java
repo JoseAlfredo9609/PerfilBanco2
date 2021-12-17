@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ibm.academia.apirest.exceptions.NotFoundException;
 import com.ibm.academia.apirest.mapper.ClienteMapper;
 import com.ibm.academia.apirest.models.dto.ClienteDTO;
 import com.ibm.academia.apirest.models.entities.Cliente;
@@ -37,11 +36,9 @@ public class ClienteController
 	@GetMapping("/perfil")
     public ResponseEntity<?> indicarPerfil(@RequestParam String pasion , @RequestParam Integer salario , @RequestParam Integer edad)
 	{
-        List<Cliente> clientes = clienteDao.findByPasionSalarioEdad(pasion, salario, edad);
-		if(clientes.isEmpty())
-			throw new NotFoundException("No existe perfil para esos datos");
-		return ResponseEntity.status(HttpStatus.OK).header("Operacion Exitosa").body(clientes);
-		
+		List<Cliente> clientes = null;
+		clientes = clienteDao.findByPasionSalarioEdad(pasion, salario, edad);
+		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);	
     }
 	
 	/**
@@ -57,9 +54,7 @@ public class ClienteController
     public ResponseEntity<?> indicarPerfilDTO(@RequestParam String pasion , @RequestParam Integer salario , @RequestParam Integer edad)
 	{
         List<Cliente> clientes = clienteDao.findByPasionSalarioEdad(pasion, salario, edad);
-		if(clientes.isEmpty())
-			throw new NotFoundException("No existe perfil para esos datos");
-		
+
 		List<ClienteDTO> listaClientes = clientes
 				.stream()
 				.map(ClienteMapper::mapCliente)
